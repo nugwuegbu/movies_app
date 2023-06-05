@@ -1,0 +1,65 @@
+ {% extends 'base.html' %}
+
+ {%block content %}
+
+ {% if movies %}
+    <table class="table table-striped table-bordered table-sm t">
+        <thead class="thead-dark">
+        <tr>
+            <th>IMDB ID</th>
+            <th>Movie Title</th>
+            <th>Published Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for movie in movies %}
+        <tr>
+            <td>{{ movie.imdb_id }}</td>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.published_date }}</td>
+            <td>
+                <a href="/edit/{{ employee.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
+                <a href="/delete/{{ employee.id }}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+    {% if movies.has_other_pages %}
+  <ul class="pagination">
+    {% if movies.has_previous %}
+      <li><a href="?page={{ movies.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in movies.paginator.page_range %}
+      {% if movies.number == i %}
+        <li class="active"><span class="btn btn-success">{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if movies.has_next %}
+      <li><a href="?page={{ movies.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+    {% else %}
+    <br>
+    <br>
+    <div  style="text-align:center;"><button id="load_btn" onclick="loadData()" class="btn btn-primary">Load Movies</button></div>
+    <br>
+    <div  style="text-align:center;"><span class="alert alert-warning alert-dismissible fade show" role="alert"> No movies found in the Database</span></div>
+    <div class="loader">
+      <div class="loading">
+      </div>
+    </div>
+
+    {% endif %}
+
+ {% endblock content %}
