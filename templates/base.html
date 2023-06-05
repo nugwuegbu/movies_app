@@ -7,6 +7,7 @@
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/spinner.css' %}" rel="stylesheet">
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/fixed_values.js' %}"></script>
         <title>movies</title>
     </head>
     <body>
@@ -46,7 +47,7 @@
         function loadData(){
          document.getElementsByClassName("loader")[0].style.display = "block";
          document.getElementById("load_btn").disabled = true;
-          fetch('http://127.0.0.1:8000/movies/', {
+          fetch(API_URL, {
            headers: {
               'Accept': 'application/json'
            }})

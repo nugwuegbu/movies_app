@@ -18,6 +18,7 @@ Mysql Database
 - create the virtual environment venv 
 - run pip install -r requirements from terminal
 - apply migrations using python manager makemigrations and python manage.py migrate
+- open javascript file name : fixed_values.js in static/js folder , replace the IP address 127.0.0.1:8000 with your app URL and port number
 - create a user using python manage.py createsuperuser and then follow prompts
 - launch the app on the displayed port on the terminal
 - login with the user created earlier
